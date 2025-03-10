@@ -66,16 +66,16 @@ train:
   ema_decay: 0.999
   optim_g:
     type: Adam
-    lr: !!float 1e-3  # Increased learning rate for faster training
+    lr: 0.0001
     weight_decay: 0
     betas: [0.9, 0.99]
 
   scheduler:
     type: MultiStepLR
-    milestones: [500, 1000]  # Use fewer steps to reduce training time
+    milestones: [1000000]
     gamma: 0.5
 
-  total_iter: 1000  # Reduced total iterations to speed up the training (1,000 iterations)
+  total_iter: 1000000  # Reduced total iterations
   warmup_iter: -1  # No warm-up
 
   # losses
@@ -86,7 +86,7 @@ train:
 
 # validation settings
 val:
-  val_freq: !!float 1e3  # Validation after every 1000 iterations (you can adjust this)
+  val_freq: !!float 5e3  # Validation after every 1000 iterations (you can adjust this)
   save_img: false
   pbar: False
 
@@ -104,8 +104,8 @@ val:
 
 # logging settings
 logger:
-  print_freq: 100  # Print every 100 iterations
-  save_checkpoint_freq: !!float 1e3  # Save checkpoint every 1000 iterations
+  print_freq: 200  # Print every 200 iterations
+  save_checkpoint_freq: 10000.0  # Save checkpoint every 10000 iterations
   use_tb_logger: true
   wandb:
     project: ~
